@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.key
+mitm/certs/ca.pem
+mitm/certs/chain.pem
+mitm/leaf_c2c8_chain.pem
+mitm/cache/
+mitm/records/
+mitm/static_userget.bin
+mitm/dynamic-state.json
+launch-args.json
+game_path.txt

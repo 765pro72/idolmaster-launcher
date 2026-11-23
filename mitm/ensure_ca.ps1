@@ -5,6 +5,11 @@ if ($env:GKM_SKIP_CA -eq '1') {
     exit 0
 }
 $Here = Split-Path -Parent $PSCommandPath
+
+$certGenerator = Join-Path $Here 'generate_local_certs.py'
+$certPython = Join-Path (Split-Path -Parent $Here) 'python/python.exe'
+& $certPython $certGenerator
+if ($LASTEXITCODE -ne 0) { exit 1 }
 $ca = Join-Path $Here 'certs\ca.pem'
 if (-not (Test-Path -LiteralPath $ca)) {
     Write-Host '       [CA] certs\ca.pem 不存在，无法安装证书' -ForegroundColor Red

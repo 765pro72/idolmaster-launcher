@@ -427,6 +427,8 @@ function Start-LocalService {
         Write-Host "       python not found: $py"
         return $false
     }
+    & $py (Join-Path $Here 'generate_local_certs.py')
+    if ($LASTEXITCODE -ne 0) { return $false }
     if (Test-Path -LiteralPath (Join-Path $Root 'online-capture.flag')) {
         # 在线抓取模式：真实转发官服，并把 Produce 响应落盘供分析
         $env:GKM_MODE          = 'online'
